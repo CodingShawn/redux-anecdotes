@@ -3,8 +3,19 @@ import { useSelector, useDispatch } from "react-redux";
 
 const getId = () => (100000 * Math.random()).toFixed(0);
 
+function sortByVotes(a, b) {
+  // Want to have higher votes on left side of array
+  if (a.votes < b.votes) {
+    return 1;
+  }
+  if (a.votes > b.votes) {
+    return -1;
+  }
+  return 0;
+}
+
 const App = () => {
-  const anecdotes = useSelector((state) => state);
+  const anecdotes = useSelector((state) => state.sort(sortByVotes));
   const dispatch = useDispatch();
 
   const vote = (id) => {
