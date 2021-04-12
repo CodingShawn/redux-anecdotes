@@ -41,25 +41,26 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export function vote(id) {
-  return({
+export function vote(id, anecdote) {
+  return {
     type: "VOTE",
     data: { id },
-  });
+    content: anecdote,
+  };
 }
 
 export function addNewAnecdote(event) {
   event.preventDefault();
   const anecdote = event.target.anecdote.value;
   event.target.anecdote.value = "";
-  return({
+  return {
     type: "ADD_NEW",
     data: {
       content: anecdote,
       votes: 0,
       id: getId(),
     },
-  });
+  };
 }
 
 export default reducer;

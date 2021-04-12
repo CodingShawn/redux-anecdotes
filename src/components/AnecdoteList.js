@@ -13,11 +13,11 @@ function sortByVotes(a, b) {
 }
 
 function AnecdoteList() {
-  const anecdotes = useSelector(({anecdotes}) => anecdotes.sort(sortByVotes));
+  const anecdotes = useSelector(({ anecdotes }) => anecdotes.sort(sortByVotes));
   const dispatch = useDispatch();
 
-  const handleVote = (id) => {
-    dispatch(vote(id));
+  const handleVote = (id, content) => {
+    dispatch(vote(id, content));
   };
 
   return (
@@ -27,7 +27,9 @@ function AnecdoteList() {
           <div>{anecdote.content}</div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => handleVote(anecdote.id)}>vote</button>
+            <button onClick={() => handleVote(anecdote.id, anecdote.content)}>
+              vote
+            </button>
           </div>
         </div>
       ))}
