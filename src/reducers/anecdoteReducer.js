@@ -35,10 +35,31 @@ const reducer = (state = initialState, action) => {
       );
     case "ADD_NEW":
       let newAnecdote = action.data;
-      return [ ...state, newAnecdote ];
+      return [...state, newAnecdote];
     default:
       return state;
   }
 };
+
+export function vote(id) {
+  return({
+    type: "VOTE",
+    data: { id },
+  });
+}
+
+export function addNewAnecdote(event) {
+  event.preventDefault();
+  const anecdote = event.target.anecdote.value;
+  event.target.anecdote.value = "";
+  return({
+    type: "ADD_NEW",
+    data: {
+      content: anecdote,
+      votes: 0,
+      id: getId(),
+    },
+  });
+}
 
 export default reducer;
