@@ -25,6 +25,10 @@ const Notification = () => {
     borderWidth: 1,
   };
 
+  if (!notification) {
+    return <div></div>
+  }
+
   return <div style={style}>{notification}</div>;
 };
 
