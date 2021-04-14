@@ -13,7 +13,14 @@ function sortByVotes(a, b) {
 }
 
 function AnecdoteList() {
-  const anecdotes = useSelector(({ anecdotes }) => anecdotes.sort(sortByVotes));
+  const filter = useSelector(({ filter }) => filter);
+  const anecdotes = useSelector(({ anecdotes }) =>
+    anecdotes
+      .sort(sortByVotes)
+      .filter((anecdote) => anecdote.content.includes(filter))
+  );
+
+  console.log(anecdotes);
   const dispatch = useDispatch();
 
   const handleVote = (id, content) => {
