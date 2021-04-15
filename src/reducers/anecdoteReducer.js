@@ -30,16 +30,10 @@ export function vote(id, anecdote) {
   };
 }
 
-export function addNewAnecdote(event) {
-  event.preventDefault();
-  const anecdote = event.target.anecdote.value;
-  event.target.anecdote.value = "";
+export function addNewAnecdote(anecdoteObject) {
   return {
     type: "ADD_NEW",
-    data: {
-      content: anecdote,
-      votes: 0,
-    },
+    data: anecdoteObject,
   };
 }
 
