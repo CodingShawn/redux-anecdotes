@@ -33,19 +33,22 @@ export function vote(id, anecdote) {
 }
 
 export function addNewAnecdote(anecdote) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let anecdoteObject = await noteService.create(anecdote);
-    dispatch( {
+    dispatch({
       type: "ADD_NEW",
       data: anecdoteObject,
     });
-  }
+  };
 }
 
-export function initialiseAnecdotes(anecdotes) {
-  return {
-    type: "INIT",
-    data: anecdotes,
+export function initialiseAnecdotes() {
+  return async function (dispatch) {
+    let anecdotes = await noteService.getAll();
+    dispatch({
+      type: "INIT",
+      data: anecdotes,
+    });
   };
 }
 

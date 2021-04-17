@@ -19,8 +19,6 @@ function AnecdoteList() {
       .sort(sortByVotes)
       .filter((anecdote) => anecdote.content.includes(filter))
   );
-
-  console.log(anecdotes);
   const dispatch = useDispatch();
 
   const handleVote = (id, content) => {
