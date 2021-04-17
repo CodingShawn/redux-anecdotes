@@ -1,3 +1,5 @@
+import noteService from "../services/anecdotes";
+
 const reducer = (state = [], action) => {
   console.log("state now: ", state);
   console.log("action", action);
@@ -30,11 +32,14 @@ export function vote(id, anecdote) {
   };
 }
 
-export function addNewAnecdote(anecdoteObject) {
-  return {
-    type: "ADD_NEW",
-    data: anecdoteObject,
-  };
+export function addNewAnecdote(anecdote) {
+  return async function(dispatch) {
+    let anecdoteObject = await noteService.create(anecdote);
+    dispatch( {
+      type: "ADD_NEW",
+      data: anecdoteObject,
+    });
+  }
 }
 
 export function initialiseAnecdotes(anecdotes) {
