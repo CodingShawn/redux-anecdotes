@@ -1,5 +1,7 @@
 const initialNotification = "";
 
+// Already tie in notifications action type with other actions -> Only use one
+// extra action to remove notifications
 function reducer(state = initialNotification, action) {
   switch (action.type) {
     case "VOTE":
@@ -18,5 +20,19 @@ export function removeNotification() {
     type: "REMOVE_NOTIFICATION",
   };
 }
+
+// export function setNotification(message, time) {
+//   return async function (dispatch) {
+//     dispatch({
+//       type: "NEW_MESSAGE",
+//       data: {
+//         content: message
+//       }
+//     })
+//     setTimeout(() => {
+//       dispatch(removeNotification())
+//     }, time)
+//   }
+// }
 
 export default reducer;
