@@ -13,4 +13,15 @@ async function create(anecdote) {
   return response.data;
 }
 
-export default { getAll, create };
+async function vote(id) {
+  const objectData = await axios.get(baseUrl + `/${id}`);
+  let object = objectData.data;
+  let votes = object.votes;
+  const response = await axios.put(baseUrl + `/${id}`, {
+    ...object,
+    votes: votes + 1,
+  });
+  return response.data;
+}
+
+export default { getAll, create, vote };

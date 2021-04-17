@@ -5,12 +5,8 @@ const reducer = (state = [], action) => {
   console.log("action", action);
   switch (action.type) {
     case "VOTE":
-      const id = action.data.id;
-      const anecdoteToChange = state.find((anecdote) => anecdote.id === id);
-      const changedAnecdote = {
-        ...anecdoteToChange,
-        votes: anecdoteToChange.votes + 1,
-      };
+      const changedAnecdote = action.data;
+      const id = changedAnecdote.id;
       return state.map((anecdote) =>
         anecdote.id !== id ? anecdote : changedAnecdote
       );
@@ -24,11 +20,13 @@ const reducer = (state = [], action) => {
   }
 };
 
-export function vote(id, anecdote) {
-  return {
-    type: "VOTE",
-    data: { id },
-    content: anecdote,
+export function vote(id) {
+  return async function (dispatch) {
+    let anecdoteObject = await noteService.vote(id);
+    dispatch({
+      type: "VOTE",
+      data: anecdoteObject,
+    });
   };
 }
 

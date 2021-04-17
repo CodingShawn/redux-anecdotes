@@ -3,7 +3,7 @@ const initialNotification = "";
 function reducer(state = initialNotification, action) {
   switch (action.type) {
     case "VOTE":
-      return `You voted for '${action.content}'`;
+      return `You voted for '${action.data.content}'`;
     case "ADD_NEW":
       return `You added '${action.data.content}'`;
     case "REMOVE_NOTIFICATION":

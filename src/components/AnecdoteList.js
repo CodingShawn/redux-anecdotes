@@ -21,8 +21,8 @@ function AnecdoteList() {
   );
   const dispatch = useDispatch();
 
-  const handleVote = (id, content) => {
-    dispatch(vote(id, content));
+  const handleVote = (id) => {
+    dispatch(vote(id));
   };
 
   return (
@@ -32,9 +32,7 @@ function AnecdoteList() {
           <div>{anecdote.content}</div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => handleVote(anecdote.id, anecdote.content)}>
-              vote
-            </button>
+            <button onClick={() => handleVote(anecdote.id)}>vote</button>
           </div>
         </div>
       ))}
