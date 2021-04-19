@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { removeNotification } from "../reducers/notificationReducer";
+import { connect } from "react-redux";
 
 const Notification = () => {
   const notification = useSelector(({ notifications }) => notifications);
@@ -32,4 +33,12 @@ const Notification = () => {
   return <div style={style}>{notification}</div>;
 };
 
-export default Notification;
+function mapStateToProps (state) {
+  return {
+    notification: state.notification
+  }
+}
+
+const ConnectedNotification = connect(mapStateToProps)(Notification)
+
+export default ConnectedNotification;
