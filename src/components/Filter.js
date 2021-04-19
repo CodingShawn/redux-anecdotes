@@ -1,11 +1,9 @@
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { updateFilter } from "../reducers/filterReducer";
 
-function Filter() {
-  const dispatch = useDispatch();
-
+function Filter(props) {
   function handleFilterChange(event) {
-    dispatch(updateFilter(event.target.value));
+    props.updateFilter(event.target.value);
   }
 
   const style = {
@@ -20,4 +18,10 @@ function Filter() {
   );
 }
 
-export default Filter;
+const mapDispatchToProps = {
+  updateFilter,
+};
+
+const ConnectedFilter = connect(null, mapDispatchToProps)(Filter);
+
+export default ConnectedFilter;
